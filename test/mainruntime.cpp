@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <dlfcn.h>
-#include <cstdlib> // 오타 수정: inclide -> include, cstdlib.h -> cstdlib
+#include <cstdlib>
 #include "Determinant.h"
 #include "Inverse.h"
 
 using namespace std;
 
-// 코드 가독성을 위해 타입 정의
 using MatrixType = vector<vector<double>>;
 
 int main() {
@@ -53,8 +52,7 @@ int main() {
         cout << "Determinant of Matrix : " << det << "\n";
 
         if (det != 0) {
-            // 3. InverseMatrix 함수 포인터 가져오기 (매우 중요: 원본 코드에서 누락됨)
-            // 원본 코드에서는 포인터 선언만 하고 dlsym으로 연결하지 않아 충돌 발생함
+            // 3. InverseMatrix 함수 포인터 가져오기
             MatrixType (*InverseMatrix)(MatrixType);
             InverseMatrix = (MatrixType (*)(MatrixType))dlsym(handle, "InverseMatrix");
             
